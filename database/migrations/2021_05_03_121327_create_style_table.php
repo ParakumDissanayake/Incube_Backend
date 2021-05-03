@@ -7,12 +7,11 @@ class CreateStyleTable extends Migration {
 
 	public function up()
 	{
-		Schema::create('style', function(Blueprint $table) {
-			$table->increments('styleID')->primary();
+		Schema::create('styles', function(Blueprint $table) {
 			$table->timestamps();
-			$table->string('styleCode', 20);
+			$table->string('styleNo', 20);
 			$table->string('styleName', 20);
-			$table->integer('styleQuantity');
+			$table->double('styleQuantity',8,1);
 			$table->string('styleStatus');
 			$table->string('styleType');
 		});
@@ -20,6 +19,6 @@ class CreateStyleTable extends Migration {
 
 	public function down()
 	{
-		Schema::drop('style');
+		Schema::drop('styles');
 	}
 }
