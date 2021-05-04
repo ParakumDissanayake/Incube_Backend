@@ -7,14 +7,15 @@ class CreateItemTable extends Migration {
 
 	public function up()
 	{
-		Schema::create('item', function(Blueprint $table) {
-			$table->integer('itemID')->primary();
+		Schema::create('items', function(Blueprint $table) {
+			$table->string('itemCode');
 			$table->integer('categoryID')->unsigned();
+			$table->string('itemName');
 		});
 	}
 
 	public function down()
 	{
-		Schema::drop('item');
+		Schema::drop('items');
 	}
 }

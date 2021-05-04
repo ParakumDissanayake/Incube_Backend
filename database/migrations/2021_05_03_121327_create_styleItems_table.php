@@ -8,9 +8,9 @@ class CreateStyleItemsTable extends Migration {
 	public function up()
 	{
 		Schema::create('styleItems', function(Blueprint $table) {
-			$table->integer('styleID')->primary()->unsigned();
+			$table->integer('styleID')->unsigned();
 			$table->timestamps();
-			$table->integer('itemID')->primary()->unsigned();
+			$table->integer('itemID')->unsigned();
 			$table->integer('consumption');
 		});
 	}
