@@ -8,12 +8,13 @@ class CreateStyleTable extends Migration {
 	public function up()
 	{
 		Schema::create('styles', function(Blueprint $table) {
-			$table->timestamps();
+			$table->id();
 			$table->string('styleNo', 20);
 			$table->string('styleName', 20);
 			$table->double('styleQuantity',8,1);
 			$table->string('styleStatus');
 			$table->string('styleType');
+			$table->timestamps();
 		});
 	}
 

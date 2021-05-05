@@ -8,9 +8,9 @@ class CreateCategoryTable extends Migration {
 	public function up()
 	{
 		Schema::create('categories', function(Blueprint $table) {
-			$table->timestamps();
-			$table->integer('categoryID')->primary()->unsigned();
+			$table->id();
 			$table->string('categoryName');
+			$table->timestamps();
 		});
 	}
 

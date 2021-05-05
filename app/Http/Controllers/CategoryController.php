@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Traits\ApiResponse;
 
 class CategoryController extends Controller 
 {
-
+  use ApiResponse;
   /**
    * Display a listing of the resource.
    *
@@ -15,8 +16,8 @@ class CategoryController extends Controller
    */
   public function index()
   {
-    $categories = Category::all()->with('items');
-    return $this->generateResponse('style created', $categories);
+    $categories = Category::with('Items')->get();
+    return $this->generateResponse('categories retrived', $categories);
   }
 
   /**
