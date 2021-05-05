@@ -21,6 +21,8 @@ class StyleController extends Controller
    */
   public function index()
   {
+    $styles = Style::all()->with('StyleItems');
+    return $this->generateResponse('styles retrived', $styles);
   }
 
   /**
@@ -82,7 +84,6 @@ class StyleController extends Controller
       }
 
       return $this->generateResponse('style created', $style);
-
     } catch (Exception $ex) {
       return $this->generateResponse($ex->getMessage(), '', 'Failed', 500);
     }

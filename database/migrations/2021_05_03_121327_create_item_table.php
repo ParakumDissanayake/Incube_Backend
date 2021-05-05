@@ -8,9 +8,11 @@ class CreateItemTable extends Migration {
 	public function up()
 	{
 		Schema::create('items', function(Blueprint $table) {
+			$table->id();
 			$table->string('itemCode');
-			$table->integer('categoryID')->unsigned();
 			$table->string('itemName');
+			$table->integer('categoryID')->unsigned();
+			$table->timestamps();
 		});
 	}
 

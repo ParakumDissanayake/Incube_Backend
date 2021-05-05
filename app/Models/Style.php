@@ -10,6 +10,7 @@ class Style extends Model
     protected $table = 'styles';
     public $timestamps = true;
     protected $fillable = [
+        'styleNo',
         'styleCode',
         'styleName',
         'styleQuantity',

@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Exception;
+use App\Traits\ApiResponse;
 
 class ItemController extends Controller 
 {
-
+  use ApiResponse;
   /**
    * Display a listing of the resource.
    *
@@ -14,7 +18,8 @@ class ItemController extends Controller
    */
   public function index()
   {
-    
+    $items = Item::all()->with('ItemCategory');
+    return $this->generateResponse('items retrived', $items);
   }
 
   /**
@@ -34,7 +39,29 @@ class ItemController extends Controller
    */
   public function store(Request $request)
   {
-    
+    // General validation
+    $validator = Validator::make(request()->all(), [
+      'item_code' => 'required|string|max:255',
+      'item_name' => 'required|string|max:255',
+      'category_id' => 'required',
+    ]);
+
+    if ($validator->fails()) {
+      return $this->validationFailed($validator);
+    }
+
+    try {
+      $style = Item::create([
+        'itemName' => $request->input('item_name'),
+        'itemCode' => $request->input('item_code'),
+        'categoryID' => $request->input('category_id')
+      ]);
+      return $this->generateResponse('item created', $style);
+    }
+    catch(Exception $ex){
+      return $this->generateResponse($ex->getMessage(), '', 'Failed', 500);
+    }
+
   }
 
   /**
